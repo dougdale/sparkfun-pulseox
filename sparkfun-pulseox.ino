@@ -38,7 +38,7 @@ void setup()
 
   // OLED initialization
   oled.begin();    // Initialize the OLED
-  oled.clear(ALL); // Clear the display's internal memory
+  oled.clear(PAGE); // Clear the display's internal memory
 
   // Set up for initialization messages
   oled.setFontType(0);  // Set font to type 0
@@ -47,17 +47,17 @@ void setup()
   // Bio Sensor initialization
   int result = bioHub.begin();
   if (!result) {
-    oled.println("Sensor started!");
+    oled.println("Started");
   } else {
     oled.println("Could not communicate with the sensor!!!");
     fatal = true;
   }
 
   
-  oled.println("Configuring Sensor...."); 
+  oled.println("Config..."); 
   int error = bioHub.configBpm(MODE_ONE); // Configuring just the BPM settings. 
   if(!error){
-    oled.println("Sensor configured.");
+    oled.println("Configured");
   }
   else {
     oled.println("Error configuring sensor.");
@@ -87,13 +87,13 @@ void loop()
     
     oled.clear(PAGE);
     oled.setCursor(0,0);
-    oled.print("Heartrate: ");
+    oled.print("Pulse: ");
     oled.println(body.heartRate); 
-    oled.print("Confidence: ");
+    oled.print("Conf:  ");
     oled.println(body.confidence); 
-    oled.print("Oxygen: ");
+    oled.print("O2 %:  ");
     oled.println(body.oxygen); 
-    oled.print("Status: ");
+    oled.print("Stat:  ");
     oled.println(body.status);
     oled.display();
      
